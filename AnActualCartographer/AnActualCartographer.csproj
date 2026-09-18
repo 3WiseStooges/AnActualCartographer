@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <AssemblyName>AnActualCartographer</AssemblyName>
+    <RootNamespace>AnActualCartographer</RootNamespace>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Version>1.0.0</Version>
+    <DebugType>portable</DebugType>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Product>AnActualCartographer</Product>
+    <Description>Using a cartography table widens how far the map fog lifts as you explore.</Description>
+    <!-- assembly_valheim references BCL facades at Unity's versions, which never line up with
+         the netstandard2.1 ref pack. The plugin runs against the game's own BCL, so the
+         unification report is noise. -->
+    <MSBuildWarningsAsMessages>MSB3277</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+
+  <!-- BepInEx and HarmonyX come from NuGet so a build does not depend on which
+       r2modman profile happens to exist. Only the game's own assemblies are
+       referenced from disk. Override the game path on the command line, e.g.
+       dotnet build AnActualCartographer/AnActualCartographer.csproj -c Release -p:ValheimFolder="D:\Steam\steamapps\common\Valheim" -->
+  <PropertyGroup>
+    <ValheimFolder Condition="'$(ValheimFolder)' == '' AND Exists('X:\SteamLibrary\steamapps\common\Valheim')">X:\SteamLibrary\steamapps\common\Valheim</ValheimFolder>
+    <ValheimFolder Condition="'$(ValheimFolder)' == '' AND Exists('$(ProgramFiles)\Steam\steamapps\common\Valheim')">$(ProgramFiles)\Steam\steamapps\common\Valheim</ValheimFolder>
+    <ValheimFolder Condition="'$(ValheimFolder)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Valheim</ValheimFolder>
+    <Managed>$(ValheimFolder)\valheim_Data\Managed</Managed>
+  </PropertyGroup>
+
+  <Target Name="VerifyRefs" BeforeTargets="BeforeBuild">
+    <Error Condition="!Exists('$(Managed)\assembly_valheim.dll')"
+           Text="Valheim managed assemblies not found at '$(Managed)'. Pass -p:ValheimFolder=&quot;...&quot;." />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" PrivateAssets="all" />
+    <PackageReference Include="HarmonyX" Version="2.10.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Game code lives in assembly_valheim.dll, not Assembly-CSharp.dll. -->
+    <Reference Include="assembly_valheim">
+      <HintPath>$(Managed)\assembly_valheim.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(Managed)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(Managed)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyOutputs" AfterTargets="Build">
+    <MakeDir Directories="$(MSBuildProjectDirectory)\..\package" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MSBuildProjectDirectory)\..\package" />
+  </Target>
+</Project>

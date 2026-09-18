@@ -1,0 +1,9 @@
+{
+  "name": "AnActualCartographer",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/3WiseStooges/AnActualCartographer",
+  "description": "Build and use a cartography table and you map the world three times as far, for that character in that world. Multiplier configurable.",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.2350"
+  ]
+}
