@@ -39,7 +39,7 @@ never has to guess when the minimap, the profile and ZNet's world have all finis
 `Minimap.Explore(Vector3, float)` does `ceil(radius / m_pixelSize)` and walks that many whole
 pixels. `m_pixelSize` is 64 and `m_textureSize` is 256. **This is the detail that matters:**
 vanilla's 100m radius becomes 2 pixels, so the fog really lifts 128m. Anything that scales the
-raw radius is off by that rounding — 3x reads as 2.5x. `CartographyState.Widen` scales the pixel
+raw radius is off by that rounding — 5x reads as 4x. `CartographyState.Widen` scales the pixel
 count instead.
 
 `MapTable` wires its two switches in `Start` to the **private** `OnRead(Switch, Humanoid,

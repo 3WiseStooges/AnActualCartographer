@@ -62,9 +62,9 @@ namespace AnActualCartographer
         /// the stock 100m radius and 64m pixels that ceiling turns 100 into 2 pixels, so the fog
         /// really lifts 128m, not 100m.
         ///
-        /// Scaling the raw radius would therefore undersell the multiplier - 3x gives 300m,
-        /// which ceils back to 5 pixels, or 320m, only 2.5x the distance the player watches
-        /// clear. Scaling the pixel count instead makes 3x mean three times as far, which is
+        /// Scaling the raw radius would therefore undersell the multiplier - 5x gives 500m,
+        /// which ceils back to 8 pixels, or 512m, only 4x the distance the player watches
+        /// clear. Scaling the pixel count instead makes 5x mean five times as far, which is
         /// what the config claims and what anyone reading it would measure.
         /// </summary>
         private static float Widen(Minimap minimap, float baseRadius, float multiplier)

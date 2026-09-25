@@ -22,10 +22,10 @@ namespace AnActualCartographer
                 "earned is kept and takes effect again when you turn this back on.");
 
             ExploreRadiusMultiplier = config.Bind(
-                "Cartography Table", "ExploreRadiusMultiplier", 3f,
+                "Cartography Table", "ExploreRadiusMultiplier", 5f,
                 new ConfigDescription(
-                    "How much further the fog lifts once the table has been used. 3 means three " +
-                    "times as far as vanilla, so the 128m the fog normally clears becomes 384m. " +
+                    "How much further the fog lifts once the table has been used. 5 means five " +
+                    "times as far as vanilla, so the 128m the fog normally clears becomes 640m. " +
                     "Counted in whole fog-map pixels, which is how the game explores, so the " +
                     "multiplier lands on the distance you actually watch clear.",
                     new AcceptableValueRange<float>(1f, 50f)));

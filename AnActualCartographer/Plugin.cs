@@ -15,7 +15,7 @@ namespace AnActualCartographer
     {
         public const string ModGuid = "com.ljindustries.valheim.anactualcartographer";
         public const string ModName = "AnActualCartographer";
-        public const string ModVersion = "1.0.0";
+        public const string ModVersion = "1.1.0";
 
         internal static ManualLogSource Log;
 

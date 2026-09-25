@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0
+
+- **Default multiplier raised from 3x to 5x.** The fog now lifts 640m around you once the
+  table has been used, up from 384m; 3x did not feel like enough of a reward for building one.
+  Ten fog pixels instead of six, and still an exact multiple of the 128m vanilla clears.
+- Only the *default* changed. A config file written by an earlier version keeps whatever
+  `ExploreRadiusMultiplier` it already has — set it to 5 by hand, or delete the file and let it
+  regenerate.
+
 ## 1.0.0
 
 First release.
