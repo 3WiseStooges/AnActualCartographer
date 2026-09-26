@@ -62,6 +62,31 @@ launching the game, load the assembly with `MetadataLoadContext` and resolve eac
 name and parameter types — note the game ships its own Mono `mscorlib` in `Managed`, so
 resolve entirely inside that folder rather than mixing in the host's .NET.
 
+## Why the multiplier is capped at 10
+
+`Minimap.UpdateExplore` calls `Explore` every `m_exploreInterval` (2s), and `Explore` walks
+the full `(2n+1)^2` box every time regardless of whether anything can have changed. Cost
+grows with the square of the multiplier:
+
+| Multiplier | Radius | Cells per tick |
+| --- | --- | --- |
+| 1 (vanilla) | 128m | 25 |
+| 5 | 640m | 441 |
+| 10 (cap) | 1280m | 1,681 |
+| 30 | 3840m | 14,641 |
+
+All of that lands on one frame, which is why an uncapped multiplier reads as a hitch every
+two seconds rather than a general slowdown. 1.0.0 shipped with the range open to 50; that
+was a mistake.
+
+`ExploreSkip` removes the idle case entirely. `Explore` derives its circle from the player's
+fog pixel and the radius alone, so an unchanged pixel and radius cover exactly the cells the
+previous tick already explored - the call can be skipped outright. It replicates vanilla's
+pixel arithmetic exactly, **including `Utils.RoundToInt`** (in `assembly_utils.dll`, not
+`assembly_valheim.dll`), because `Mathf.RoundToInt` rounds halves to even and would disagree
+on exact boundaries. It re-checks `m_explored` at the centre so a map reset, which clears
+that bitarray without moving the player, still re-reveals.
+
 ## Testing
 
 Install through r2modman so you exercise the real load order rather than hand-copying into a

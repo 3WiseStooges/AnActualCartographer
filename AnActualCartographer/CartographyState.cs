@@ -33,6 +33,12 @@ namespace AnActualCartographer
         private static float _lastApplied = -1f;
 
         /// <summary>
+        /// True while the widened radius is actually in force. ExploreSkip uses this so it
+        /// only ever short-circuits work this mod created.
+        /// </summary>
+        internal static bool IsWidening { get; private set; }
+
+        /// <summary>
         /// Sets the radius vanilla is about to explore with. Cheap enough to call every frame:
         /// everything after the first call per player is a reference comparison and a multiply.
         /// </summary>
@@ -42,6 +48,7 @@ namespace AnActualCartographer
 
             float baseRadius = BaseRadiusFor(minimap);
             bool widen = ModConfig.Enabled.Value && IsUnlocked(player);
+            IsWidening = widen;
             float radius = widen
                 ? Widen(minimap, baseRadius, ModConfig.ExploreRadiusMultiplier.Value)
                 : baseRadius;
@@ -165,6 +172,7 @@ namespace AnActualCartographer
             _cachedPlayer = null;
             _cachedWorldUid = 0L;
             _cachedUnlocked = false;
+            ExploreSkip.Invalidate();
         }
     }
 }

@@ -6,8 +6,8 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <AssemblyName>AnActualCartographer</AssemblyName>
     <RootNamespace>AnActualCartographer</RootNamespace>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <Version>1.1.0</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <Version>1.2.0</Version>
     <DebugType>portable</DebugType>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Product>AnActualCartographer</Product>
@@ -43,6 +43,11 @@
     <!-- Game code lives in assembly_valheim.dll, not Assembly-CSharp.dll. -->
     <Reference Include="assembly_valheim">
       <HintPath>$(Managed)\assembly_valheim.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Utils.RoundToInt lives here, not in assembly_valheim. -->
+    <Reference Include="assembly_utils">
+      <HintPath>$(Managed)\assembly_utils.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine">

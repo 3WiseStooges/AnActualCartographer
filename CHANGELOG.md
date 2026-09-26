@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.0
+
+- **Fixed a hitch every 2 seconds at large multipliers.** `Minimap.Explore` walks its whole
+  circle on every tick whether or not anything can have changed, and that cost lands on a single
+  frame. `ExploreSkip` now skips the call outright when the player has not moved to a different
+  fog pixel and the radius has not changed, since the previous tick already revealed exactly
+  those cells. Standing still now costs nothing at all.
+- **`ExploreRadiusMultiplier` is capped at 10**, down from 50. The per-tick cost grows with the
+  square of the multiplier — 1,681 cells at 10, but 14,641 at 30 — and 50 was never a
+  defensible ceiling. An existing config set above 10 is clamped on load.
+- Skipping only ever applies while this mod is actually widening the radius; at vanilla range the
+  walk is 25 cells and is left alone.
+
 ## 1.1.0
 
 - **Default multiplier raised from 3x to 5x.** The fog now lifts 640m around you once the

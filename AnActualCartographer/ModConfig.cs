@@ -27,8 +27,11 @@ namespace AnActualCartographer
                     "How much further the fog lifts once the table has been used. 5 means five " +
                     "times as far as vanilla, so the 128m the fog normally clears becomes 640m. " +
                     "Counted in whole fog-map pixels, which is how the game explores, so the " +
-                    "multiplier lands on the distance you actually watch clear.",
-                    new AcceptableValueRange<float>(1f, 50f)));
+                    "multiplier lands on the distance you actually watch clear.\n" +
+                    "Capped at 10. The game re-walks the whole circle every 2 seconds, and the " +
+                    "cost grows with the square of this number: 10 is about 1,700 cells a tick, " +
+                    "30 was about 15,000 and showed up as a hitch every 2 seconds.",
+                    new AcceptableValueRange<float>(1f, 10f)));
 
             ShowUnlockMessage = config.Bind(
                 "Cartography Table", "ShowUnlockMessage", true,

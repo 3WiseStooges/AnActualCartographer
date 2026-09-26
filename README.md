@@ -33,7 +33,7 @@ on 512m, which is only 4x, and the config would have been quietly lying to you.
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `Enabled` | `true` | Turn off for vanilla range without uninstalling. While off the mod is inert — it widens nothing, says nothing, and records no new unlocks. One you already earned is kept, and comes back when you turn this on again. |
-| `ExploreRadiusMultiplier` | `5` | How much further the fog lifts after the table. `5` = five times as far (640m). Range 1–50. |
+| `ExploreRadiusMultiplier` | `5` | How much further the fog lifts after the table. `5` = five times as far (640m). Range 1–10 — see below. |
 | `ShowUnlockMessage` | `true` | Centre-screen message the first time you use a table in a world. Once per world, not per use. |
 | `UnlockMessage` | `You read the land with a cartographer's eye` | Text for that message. |
 | `VerboseLogging` | `false` | Log the unlock and the resulting radius to the BepInEx console. |
