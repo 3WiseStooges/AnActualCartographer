@@ -8,8 +8,8 @@ repository = "https://thunderstore.io"
 # Must match your Thunderstore team name exactly
 namespace = "LJIndustries"
 name = "AnActualCartographer"
-versionNumber = "1.2.0"
-description = "Build and use a cartography table and you map the world five times as far, for that character in that world. Multiplier configurable."
+versionNumber = "1.2.1"
+description = "Use a cartography table and the map fog lifts 5x further as you explore. Configurable."
 websiteUrl = "https://github.com/3WiseStooges/AnActualCartographer"
 containsNsfwContent = false
 

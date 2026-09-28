@@ -1,8 +1,8 @@
 {
   "name": "AnActualCartographer",
-  "version_number": "1.2.0",
+  "version_number": "1.2.1",
   "website_url": "https://github.com/3WiseStooges/AnActualCartographer",
-  "description": "Build and use a cartography table and you map the world five times as far, for that character in that world. Multiplier configurable.",
+  "description": "Use a cartography table and the map fog lifts 5x further as you explore. Configurable.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2350"
   ]

@@ -6,12 +6,12 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <AssemblyName>AnActualCartographer</AssemblyName>
     <RootNamespace>AnActualCartographer</RootNamespace>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.1.0</AssemblyVersion>
+    <Version>1.2.1</Version>
     <DebugType>portable</DebugType>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Product>AnActualCartographer</Product>
-    <Description>Using a cartography table widens how far the map fog lifts as you explore.</Description>
+    <Description>Use a cartography table and the map fog lifts 5x further as you explore. Configurable.</Description>
     <!-- assembly_valheim references BCL facades at Unity's versions, which never line up with
          the netstandard2.1 ref pack. The plugin runs against the game's own BCL, so the
          unification report is noise. -->

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Simpler store description. No code changes.
+
 ## 1.2.0
 
 - **Fixed a hitch every 2 seconds at large multipliers.** `Minimap.Explore` walks its whole
